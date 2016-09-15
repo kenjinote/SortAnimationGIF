@@ -28,7 +28,7 @@ void DrawGraph(Gdiplus::Bitmap *bmp, int nWidth, int nHeight, int *data, int siz
 	}
 }
 
-void BubleSort(int* data, int size, CGifEncoder *pGifEncoder, Gdiplus::Bitmap *bmp, int nWidth, int nHeight, Gdiplus::Color color)
+void BubbleSort(int* data, int size, CGifEncoder *pGifEncoder, Gdiplus::Bitmap *bmp, int nWidth, int nHeight, Gdiplus::Color color)
 {
 	BOOL bFlag;
 	int k = 0;
@@ -103,7 +103,7 @@ void Shuffle(int* pList, int nSize)
 	}
 }
 
-enum SORT_TYPE {BUBLE_SORT, QUICK_SORT};
+enum SORT_TYPE {BUBBLE_SORT, QUICK_SORT};
 void CreateSortAnimationGif(SORT_TYPE type, LPCTSTR lpszFilePath, int nListSize, int nWidth, int nHeight, float fFrameRate, Gdiplus::Color color)
 {
 	int* data = new int[nListSize];
@@ -119,8 +119,8 @@ void CreateSortAnimationGif(SORT_TYPE type, LPCTSTR lpszFilePath, int nListSize,
 			DrawGraph(bmp, nWidth, nHeight, data, nListSize, color);
 			for (int i = 0; i < 50; ++i)
 				gifEncoder.AddFrame(bmp);
-			if (type == BUBLE_SORT)
-				BubleSort(data, nListSize, &gifEncoder, bmp, nWidth, nHeight, color);
+			if (type == BUBBLE_SORT)
+				BubbleSort(data, nListSize, &gifEncoder, bmp, nWidth, nHeight, color);
 			else
 				QuickSort(0, nListSize - 1, data, nListSize, &gifEncoder, bmp, nWidth, nHeight, color);
 			for (int i = 0; i < 49; ++i)
@@ -146,7 +146,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_COMMAND:
 		if (LOWORD(wParam) == IDOK)
 		{
-			CreateSortAnimationGif(BUBLE_SORT, TEXT("bubble.gif"), 64, 256, 256, 50.0f, Gdiplus::Color(248, 183, 84));
+			CreateSortAnimationGif(BUBBLE_SORT, TEXT("bubble.gif"), 64, 256, 256, 50.0f, Gdiplus::Color(248, 183, 84));
 			CreateSortAnimationGif(QUICK_SORT, TEXT("quick.gif"), 64, 256, 256, 50.0f, Gdiplus::Color(155, 216, 236));
 			MessageBox(hWnd, TEXT("出力が完了しました。"), TEXT("確認"), 0);
 		}
