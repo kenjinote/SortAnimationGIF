@@ -16,7 +16,7 @@ TCHAR szClassName[] = TEXT("Window");
 void DrawGraph(Gdiplus::Bitmap *bmp, int nWidth, int nHeight, int *data, int size, Gdiplus::Color color)
 {
 	Gdiplus::Graphics g(bmp);
-	g.Clear(0);
+	g.Clear(Gdiplus::Color::White);
 	float dmax = 0.0f;
 	for (int i = 0; i < size; ++i) {
 		dmax = max(data[i], dmax);
@@ -181,7 +181,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR pCmdLine, int 
 	RegisterClass(&wndclass);
 	HWND hWnd = CreateWindow(
 		szClassName,
-		TEXT("Window"),
+		TEXT("バブルソートとクイックソートの様子をアニメーションGIFとして出力"),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		0,
