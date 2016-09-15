@@ -16,7 +16,7 @@ TCHAR szClassName[] = TEXT("Window");
 void DrawGraph(Gdiplus::Bitmap *bmp, int nWidth, int nHeight, int *data, int size, Gdiplus::Color color)
 {
 	Gdiplus::Graphics g(bmp);
-	g.Clear(Gdiplus::Color::White);
+	g.Clear(Gdiplus::Color::Black);
 	float dmax = 0.0f;
 	for (int i = 0; i < size; ++i) {
 		dmax = max(data[i], dmax);
